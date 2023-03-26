@@ -2,8 +2,8 @@ from typing import Optional
 from fastapi import FastAPI
 from MysteryMaker import MysteryMaker
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
 from fastapi.encoders import jsonable_encoder
+# import uvicorn
 
 app = FastAPI()
 
@@ -34,3 +34,5 @@ def init():
 @app.get("/graph/")
 def get_graph():
     return mm.get_graph()
+
+print("Game has been initialized: ", init())

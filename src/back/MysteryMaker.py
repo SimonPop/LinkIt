@@ -10,7 +10,7 @@ class MysteryMaker():
         self.target_page = self.init_target_page()
         self.evidence_pages = self.init_evidences()
         # Init model.
-        self.model = pipeline("question-answering")
+        self.model = pipeline("question-answering", model="distilbert-base-cased-distilled-squad")
 
     def get_graph(self):
         return json_graph.node_link_data(self.graph)
@@ -34,8 +34,9 @@ class MysteryMaker():
         # Check if hyper link is in the sentence.
         links = self.hyperlink_in(full_sentence, links)
         # Create a new page if so
-        for link in [link for link in links if link not in self.evidence_pages]:
-            self.evidence_pages[link] = self.wiki_wiki.page(link)
+        for link in links:
+            if link not in self.evidence_pages:
+                self.evidence_pages[link] = self.wiki_wiki.page(link)
             self.graph.add_edge(link, page_name)
         return {
             **output,
