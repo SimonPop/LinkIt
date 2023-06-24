@@ -1,7 +1,9 @@
 <h1 align="center">🔍 Link'It</h1>
 
 <p align="center">
-<a href="https://www.python.org"><img alt="Python Version 3.10" src="https://img.shields.io/badge/Python-3.8-blue.svg?style=flat&logo=python&logoColor=white"></a>
+<a href="https://www.python.org"><img alt="Python Version 3.10" src="https://img.shields.io/badge/Python-3.10-blue.svg?style=flat&logo=python&logoColor=white"></a>
+<a href="https://react.dev/"><img alt="React version 3.10" src="https://img.shields.io/badge/React-17.0.2-66d3f0.svg?style=flat&logo=react&logoColor=white"></a>
+<a href="https://tailwindcss.com/"><img alt="Tailwind" src="https://img.shields.io/badge/TailwindCSS-3.0.2-23afb3.svg?style=flat&logo=tailwindcss&logoColor=white"></a>
 <a href="https://github.com/SimonPop/FindingMnemo/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://docs.docker.com/compose/"><img alt="Docker" src="https://img.shields.io/badge/Docker-compose-f50a87.svg?logo=docker&logoColor=white"></a>
