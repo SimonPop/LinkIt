@@ -1,16 +1,33 @@
-<h1  align="center">Link'It</h1>
+<h1 align="center">🔍 Link'It</h1>
 
 <p align="center">
 <a href="https://www.python.org"><img alt="Python Version 3.10" src="https://img.shields.io/badge/Python-3.8-blue.svg?style=flat&logo=python&logoColor=white"></a>
 <a href="https://github.com/SimonPop/FindingMnemo/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+<a href="https://docs.docker.com/compose/"><img alt="Docker" src="https://img.shields.io/badge/Docker-compose-f50a87.svg?logo=docker&logoColor=white"></a>
 </p>
 
 Detective mini-game: Find the link between 3 randomly sampled Wikipedia page by asking questions.
 
 ## *How to run the app?*
 
-### 1. Install dependencies
+### Using Docker
+
+A `docker-compose` is available for this app. 
+
+You can simply deploy it using:
+
+```
+docker compose up
+```
+
+### Using Local
+
+If you want to avoir using `docker-compose`, it is still possible to run the app in local.
+
+For that you have to follow the three following steps.
+
+#### 1. Install dependencies
 
 You first need to install dependencies using:
 
@@ -18,7 +35,7 @@ You first need to install dependencies using:
 pip install -r requirements.txt
 ```
 
-### 2. Run backend application
+#### 2. Run backend application
 
 To run the backend application (packaging the question-answer model), you will need to use the following command line from `src/back`:
 
@@ -26,7 +43,7 @@ To run the backend application (packaging the question-answer model), you will n
 uvicorn main:app --reload
 ```
 
-### 3. Install dependencies
+#### 3. Install dependencies
 
 Finally, the frontend application, from which the game can be played, can be run using the following command from `src/front`: 
 
@@ -86,5 +103,4 @@ The application uses ReactJs, Tailwind CSS and is built around a D3.js network u
 
 - Reload graph automatically at every question-answer. (Currently, the player needs to refresh it using the graph button).
 - Allow to re-center the graph using the graph button (Currently, it only allows to refresh the graph).
-- Package into Docker using `docker-compose` for both front and back to be deployed together.
 - Add secondary objective.

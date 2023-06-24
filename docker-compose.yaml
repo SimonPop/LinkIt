@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  fastapi: 
+    build:
+      context: ./
+      dockerfile: ./src/back/dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0
+    ports:     
+      - "8000:8000"
+  ui:
+    build:
+      context: ./
+      dockerfile: ./dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - fastapi
+networks:
+  counter-net:
+    driver: bridge

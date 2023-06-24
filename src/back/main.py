@@ -1,6 +1,6 @@
 from typing import Optional
 from fastapi import FastAPI
-from MysteryMaker import MysteryMaker
+from .MysteryMaker import MysteryMaker
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
 # import uvicorn
