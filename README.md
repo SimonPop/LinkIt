@@ -1,4 +1,10 @@
-# Link'It
+<h1  align="center">Link'It</h1>
+
+<p align="center">
+<a href="https://www.python.org"><img alt="Python Version 3.10" src="https://img.shields.io/badge/Python-3.8-blue.svg?style=flat&logo=python&logoColor=white"></a>
+<a href="https://github.com/SimonPop/FindingMnemo/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+</p>
 
 Detective mini-game: Find the link between 3 randomly sampled Wikipedia page by asking questions.
 
@@ -78,10 +84,7 @@ The application uses ReactJs, Tailwind CSS and is built around a D3.js network u
 
 ## 🛣️ Roadmap
 
-1. Add random initialization to nodes. 
-2. Reload graph automatically at every question-answer. (Currently, the player needs to refresh it using the graph button).
-3. Allow to re-center the graph using the graph button (Currently, it only allows to refresh the graph).
-4. Adding color for each node per category or marking if they are target or intermediate nodes.
-5. Package into Docker using `docker-compose` for both front and back to be deployed together.
-6. Add a replay button.
-7. Add secondary objective.
+- Reload graph automatically at every question-answer. (Currently, the player needs to refresh it using the graph button).
+- Allow to re-center the graph using the graph button (Currently, it only allows to refresh the graph).
+- Package into Docker using `docker-compose` for both front and back to be deployed together.
+- Add secondary objective.
