@@ -35,4 +35,6 @@ def init():
 def get_graph():
     return mm.get_graph()
 
-print("Game has been initialized: ", init())
+@app.get("/replay/")
+def replay():
+    return mm.replay()

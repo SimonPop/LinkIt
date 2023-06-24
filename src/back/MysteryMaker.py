@@ -2,9 +2,12 @@ import wikipediaapi
 from transformers import pipeline
 import networkx as nx
 from networkx.readwrite import json_graph
+from bs4 import BeautifulSoup
+import requests
 
 class MysteryMaker():
     def __init__(self):
+        self.origin_color = "#d3346e"
         self.graph = nx.Graph()
         self.wiki_wiki = wikipediaapi.Wikipedia('en')
         self.target_page = self.init_target_page()
@@ -16,9 +19,19 @@ class MysteryMaker():
         return json_graph.node_link_data(self.graph)
 
     def init_target_page(self):
-        # TODO: random page target to begin with.
-        page_target = 'Alexander Hamilton'
+        page_target = self.get_random_page_title()
         return self.wiki_wiki.page(page_target)
+    
+    def get_random_page_title(self) -> str:
+        """Get a random page title from wikipedia."""
+        title = None
+        while title is None:
+            r = requests.get("https://en.wikipedia.org/wiki/Special:Random")
+            soup = BeautifulSoup(r.text) 
+            main_title = soup.find("span", {"class": "mw-page-title-main"})
+            if not main_title is None:
+                title = main_title.text
+        return title
 
     def answer_question(self, page_name, question):
         page = self.evidence_pages[page_name]
@@ -62,17 +75,22 @@ class MysteryMaker():
         return found_links
 
     def init_evidences(self):
-        # TODO: select pages from page target. Based on page.categories ?
-        page_1 = 'Gilbert du Motier'
-        page_2 = 'James Madison'
-        page_3 = 'Thomas Jefferson'
+        page_1 = self.get_random_page_title()
+        page_2 = self.get_random_page_title()
+        page_3 = self.get_random_page_title()
 
         pages =[page_1, page_2, page_3]
 
-        self.graph.add_nodes_from(pages)
+        self.graph.add_nodes_from(pages, color=self.origin_color)
         nx.set_node_attributes(self.graph, dict([(p, p) for p in pages]), 'label')
 
         return dict([(page, self.wiki_wiki.page(page)) for page in pages])
 
     def evaluate_victory(self):
         return nx.is_connected(self.graph) and self.target_page.title in self.graph.nodes
+    
+    def replay(self):
+        self.graph = nx.Graph()
+        self.wiki_wiki = wikipediaapi.Wikipedia('en')
+        self.target_page = self.init_target_page()
+        self.evidence_pages = self.init_evidences()
