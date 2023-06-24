@@ -4,6 +4,8 @@ import WikiPage from './WikiPage';
 import Input from './Input';
 import Graph from './Graph';
 import './EvidenceBoard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 class EvidenceBoard extends React.Component {
     constructor(props) {
@@ -14,6 +16,7 @@ class EvidenceBoard extends React.Component {
           evidences: {}
       }; 
       this.initBoard();
+      this.replay = this.replay.bind(this);
     }
 
     selectEvidence(evidence_name) {
@@ -44,6 +47,10 @@ class EvidenceBoard extends React.Component {
       });
       // Do something for answer.victory
       this.setState({evidences: evidences, selectedContent: new_evidence_content});
+    }
+
+    async replay() {
+      await fetch(`http://127.0.0.1:8000/replay/`).then(_ => this.initBoard());
     }
 
     /**
@@ -85,6 +92,15 @@ class EvidenceBoard extends React.Component {
           <div class="flex flex-row search">
             <div class="basis-2/3">
               <Input selected_name={this.state.selectedEvidence} onEnter={(a, b) => this.addAnswer(a, b)} />
+            </div>
+          </div>
+
+          <div class="flex flex-row replay">
+            <div class="basis-2/3">
+                <button onClick={this.replay} class="text-white bg-emerald-400 hover:bg-emerald-500 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
+                  <FontAwesomeIcon icon={faRotateRight} />
+                  <span>&nbsp;Replay</span>
+                </button>
             </div>
           </div>
 
